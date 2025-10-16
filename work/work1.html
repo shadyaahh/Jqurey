@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer/Designer Toggle</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f8f8f8;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .label {
+            font-size: 18px;
+            font-weight: 600;
+            color: #b3b3b3;
+            transition: color 0.3s;
+        }
+
+        .label.active {
+            color: #000;
+        }
+
+        .toggle {
+            width: 130px;
+            height: 50px;
+            background-color: #bdfcc9;
+            border-radius: 30px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-btn {
+            width: 44px;
+            height: 44px;
+            background: #fff;
+            border-radius: 12px;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toggle-container">
+        <span class="label dev-label active">Developer</span>
+        <div class="toggle" id="toggle">
+            <div class="toggle-btn">
+                <span id="icon">>_</span>
+            </div>
+        </div>
+        <span class="label des-label">Designer</span>
+    </div>
+
+    <script src="script.js">
+        const toggle = document.getElementById('toggle');
+        const icon = document.getElementById('icon');
+        const devLabel = document.querySelector('.dev-label');
+        const desLabel = document.querySelector('.des-label');
+
+        let isDeveloper = true;
+
+        toggle.addEventListener('click', () => {
+            isDeveloper = !isDeveloper;
+
+            if (isDeveloper) {
+                toggle.style.backgroundColor = '#bdfcc9';
+                icon.textContent = '>_';
+                toggle.querySelector('.toggle-btn').style.left = '3px';
+                devLabel.classList.add('active');
+                desLabel.classList.remove('active');
+            } else {
+                toggle.style.backgroundColor = '#fce6b3';
+                icon.textContent = '✏';
+                toggle.querySelector('.toggle-btn').style.left = '83px';
+                devLabel.classList.remove('active');
+                desLabel.classList.add('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
